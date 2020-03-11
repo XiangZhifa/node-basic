@@ -4,23 +4,23 @@ const wwwDir = 'E:/Personal/app/www/';
 
 const server = http.createServer();
 
-server.on('request',(req,res)=>{
+server.on('request', (req, res) => {
     const url = req.url;
     let filePath = '/';
-    if(url==='/'){
-        fs.readFile('./template/template.html',(err,data)=>{
-            if(err){
+    if (url === '/') {
+        fs.readFile('./template/template.html', (err, data) => {
+            if (err) {
                 res.end('404 Not Found.');
                 return;
             }
-            fs.readdir(wwwDir,(err,files)=>{
-                if(err){
+            fs.readdir(wwwDir, (err, files) => {
+                if (err) {
                     res.end('Can not find www dir');
                     return;
                 }
                 let content = '';
-                files.forEach(item=>{
-                    content+=`
+                files.forEach(item => {
+                    content += `
                     <tr>
                         <td data-value="index.html">
                             <a class="icon file" draggable="true" href="/${item}">${item}</a>
@@ -31,17 +31,17 @@ server.on('request',(req,res)=>{
                 `
                 });
                 data = data.toString();
-                data = data.replace('@_@',content);
+                data = data.replace('@_@', content);
                 res.end(data);
             });
         });
         return;
     }
-    if(url!=='/'){
+    if (url !== '/') {
         filePath = url
     }
-    fs.readFile(wwwDir+filePath,(err,data)=>{
-        if(err){
+    fs.readFile(wwwDir + filePath, (err, data) => {
+        if (err) {
             res.end('404 Not Found.');
             return;
         }
