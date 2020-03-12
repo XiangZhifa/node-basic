@@ -12,19 +12,18 @@ exports.findPlayers = () => new Promise((resolve, reject) => {
     });
 });
 
-exports.addPlayer = (newStu) => {
-    return this.findPlayers().then(data => new Promise((resolve, reject) => {
-        data.push(Object.assign({id: 'LPL00' + (+data.length + 1)}, newStu));
-        fs.writeFile('./database/database.json', JSON.stringify({players: data}), (err) => {
-            if (err) {
-                reject(err);
-            }
-            resolve({success: true, msg: '新增数据成功!'})
-        });
-    })).catch(err => {
-        return err;
+exports.addPlayer = (newStu) => this.findPlayers().then(data => new Promise((resolve, reject) => {
+    data.push(Object.assign({id: 'LPL00' + (+data.length + 1)}, newStu));
+    fs.writeFile('./database/database.json', JSON.stringify({players: data}), (err) => {
+        if (err) {
+            reject(err);
+        }
+        resolve({success: true, msg: '新增数据成功!'})
     });
-};
+})).catch(err => {
+    return err;
+});
+
 
 exports.editPlayer = () => {
 
