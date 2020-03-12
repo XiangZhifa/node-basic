@@ -16,7 +16,7 @@ app.get('/getPlayers', (req, res) => {
     //也可以用data.toString()方法实现utf8的效果
     fs.readFile('./database.json', 'utf8', (err, data) => {
         if (err) {
-            return res.status(500).send({success: false, msg: '查询数据失败！'})
+            return res.status(500).send({success: false, msg: '查询数据失败!'})
         }
         return res.status(200).send({success: true, data: JSON.parse(data).players, msg: '查询数据成功！'})
     });
