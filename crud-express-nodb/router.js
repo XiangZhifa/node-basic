@@ -1,5 +1,3 @@
-//引入fs模块操作JSON数据
-const fs = require('fs');
 //引入express.Router
 const express = require('express');
 //创建一个路由容器
