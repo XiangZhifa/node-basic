@@ -1,0 +1,14 @@
+{
+  "players":[
+    {"id":"LPL001","name":"Clearlove","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL002","name":"KID","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL003","name":"Zzitai","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL004","name":"Cool","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL005","name":"Happy","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL006","name":"UZI","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL007","name":"AmazingJ","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL008","name":"KeNan","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL009","name":"Zmm","gender":0,"age":18,"hooby":"LOL"},
+    {"id":"LPL0010","name":"koro1","gender":0,"age":18,"hooby":"LOL"}
+  ]
+}
