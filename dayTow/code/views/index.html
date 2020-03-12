@@ -32,8 +32,14 @@
             border: 1px solid #cccccc;
             height: 24px;
             line-height: 24px;
+            font-size: 16px;
             margin-top: 8px;
             padding: 8px 16px;
+        }
+        .dateRight{
+            float: right;
+            color: #99a2aa;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -46,19 +52,16 @@
         </div>
     </div>
     <div style="margin: 20px 0">
-        <button class="postBtn">留言</button>
+        <button onClick="toPost()" class="postBtn">留言</button>
     </div>
     <div>
-        <div class="card">
-            111
-        </div>
-        <div class="card">
-            222
-        </div>
-        <div class="card">
-            333
-        </div>
+        _$Content
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    function toPost(){
+        window.location.href = '/post';
+    }
+</script>
 </html>
