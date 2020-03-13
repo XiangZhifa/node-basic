@@ -9,7 +9,7 @@ router.get('/getPlayers', (req, res) => {
     dbOpreation.findPlayers().then(data=>{
         res.status(200).send({success: true,data:data, msg: '查询数据成功!'});
     }).catch(err=>{
-        res.status(500).send({success: false, msg: err});
+        res.status(500).send(err);
     });
 });
 
@@ -22,7 +22,11 @@ router.post('/addPlayer', (req, res) => {
 });
 
 router.post('/editPlayer', (req, res) => {
-
+    dbOpreation.editPlayerById(req.body).then(data=>{
+        res.status(200).send(data);
+    }).catch(err=>{
+        res.status(500).send(err);
+    });
 });
 
 router.post('/deletePlayer', (req, res) => {

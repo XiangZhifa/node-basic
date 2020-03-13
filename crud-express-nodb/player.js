@@ -25,10 +25,25 @@ exports.addPlayer = (newStu) => this.findPlayers().then(data => new Promise((res
 });
 
 
-exports.editPlayer = () => {
+exports.editPlayerById = (updateData) => this.findPlayers().then(data => new Promise((resolve, reject) => {
+    let modifyPlayer = [...data.filter(item => item.id === updateData.id)];
+    if (modifyPlayer.length) {
+        let updatedPlayers = data.map(item => {
+            return item.id === modifyPlayer[0].id ? Object.assign(modifyPlayer[0], updateData) : item;
+        });
+        fs.writeFile('./database/database.json', JSON.stringify({players: updatedPlayers}), (err) => {
+            if (err) {
+                reject(err);
+            }
+            resolve({success: true, msg: '新增数据成功!'})
+        });
+    } else {
+        reject({success: false, msg: '您要编辑的选手不存在！'})
+    }
+})).catch(err => {
+    return err;
+});
 
-};
-
-exports.deletePlayer = () => {
+exports.deletePlayerById = () => {
 
 };
