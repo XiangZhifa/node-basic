@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 //1.连接数据库
 //连接的数据库不一定需要存在，当你插入第一条数据之后，数据库会被自动创建
 mongoose.connect('mongodb://122.51.65.109:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.set('useFindAndModify', false)
+mongoose.set('useFindAndModify', false);
 
 //2.设计集合的数据结构
 const userSchema = new mongoose.Schema({
