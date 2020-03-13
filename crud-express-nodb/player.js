@@ -12,6 +12,21 @@ exports.findPlayers = () => new Promise((resolve, reject) => {
     });
 });
 
+exports.findPlayerById = (id) => new Promise((resolve, reject) => {
+    //readFile的第二个参数可选，传入utf8，按照utf8格式编码
+    //也可以用data.toString()方法实现utf8的效果
+    fs.readFile('./database/database.json', 'utf8', (err, data) => {
+        if (err) {
+            reject(err);
+        }
+        resolve({
+            success: true,
+            data: {player: [...JSON.parse(data).players].find(item => item.id === id)},
+            msg: '查询数据成功!'
+        });
+    });
+});
+
 exports.addPlayer = (newStu) => this.findPlayers().then(data => new Promise((resolve, reject) => {
     data.push(Object.assign({id: 'LPL00' + (+data.length + 1)}, newStu));
     fs.writeFile('./database/database.json', JSON.stringify({players: data}), (err) => {
@@ -35,7 +50,7 @@ exports.editPlayerById = (updateData) => this.findPlayers().then(data => new Pro
             if (err) {
                 reject(err);
             }
-            resolve({success: true, msg: '新增数据成功!'})
+            resolve({success: true, msg: '编辑数据成功!'})
         });
     } else {
         reject({success: false, msg: '您要编辑的选手不存在！'})
@@ -44,6 +59,13 @@ exports.editPlayerById = (updateData) => this.findPlayers().then(data => new Pro
     return err;
 });
 
-exports.deletePlayerById = () => {
-
-};
+exports.deletePlayerById = (id) => this.findPlayers().then(data => new Promise((resolve, reject) => {
+    fs.writeFile('./database/database.json', JSON.stringify({players: data.filter(item=>item.id!==id)}), (err) => {
+        if (err) {
+            reject(err);
+        }
+        resolve({success: true, msg: '删除数据成功!'})
+    });
+})).catch(err => {
+    return err;
+});
